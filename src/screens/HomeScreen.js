@@ -88,8 +88,8 @@ export default function HomeScreen() {
         <Carousel/>
         <Heading/>
         <ProductRow/>
-      </ScrollView>
 
+      </ScrollView>
       
       {/* Searchbar */}
       {/* <TextInput 

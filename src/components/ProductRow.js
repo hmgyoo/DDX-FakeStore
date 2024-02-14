@@ -10,8 +10,13 @@ const ProductRow = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://fakestoreapi.com/products/category/electronics');
-        setApiData(response.data);
+        const response = await axios.get('https://fakestoreapi.com/products');
+
+        const sortedProducts = response.data.sort((a, b) => b.rating.rate - a.rating.rate);
+
+        const topRatedProducts = sortedProducts.slice(0, 7);
+
+        setApiData(topRatedProducts);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -20,22 +25,23 @@ const ProductRow = () => {
     fetchData();
   }, []);
 
-  const renderItem = ({ item }) => (
-    <View style={styles.itemContainer}>
-      <Image style={styles.productImage} source={{ uri: item.image }} />
-      <Text style={styles.productTitle}>{item.title}</Text>
-      <Text style={styles.productPrice}>{`$${item.price}`}</Text>
-      {/* Add additional information as needed */}
-    </View>
-  );
+  // const renderItem = ({ item }) => (
+  //   <View style={styles.itemContainer}>
+  //     <Image style={styles.productImage} source={{ uri: item.image }} />
+  //     <Text style={styles.productTitle}>{item.title}</Text>
+  //     <Text style={styles.productPrice}>{`$${item.price}`}</Text>
+  //     {/* Add additional information as needed */}
+  //   </View>
+  // );
 
   return (
-    <View>
+    <View style={{ marginLeft: 10, marginBottom: 10}}>
       <FlatList
         data={apiData}
-        renderItem={({ item }) => <ProductCardView/>}
+        renderItem={({ item }) => <ProductCardView product={item}/>}
         keyExtractor={(item) => item.id.toString()}
         contentContainerStyle={{columnGap: 12}}
+        // numColumns={2}
         horizontal
       />
     </View>
