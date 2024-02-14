@@ -113,7 +113,7 @@ export default function LoginScreen({navigation}) {
           // Redirect to Landing Page or perform other navigation
           navigation.navigate('Tab', {
             user: {
-              email: form.email,
+              username: form.email,
             },
           });
         } else {
@@ -132,7 +132,7 @@ export default function LoginScreen({navigation}) {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#ffffff' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
       <KeyboardAvoidingView behavior="height" style={{ flex: 1 }}>
         <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
           <View style={styles.container}>

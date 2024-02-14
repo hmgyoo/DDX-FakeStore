@@ -12,10 +12,11 @@ import {
   Image,
 } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
-
-// set API endpoint
-const API_ENDPOINT = 'https://fakestoreapi.com/products';
-
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Welcome from '../components/Welcome';
+import Carousel from '../components/Carousel';
+import Heading from '../components/Heading';
+import ProductRow from '../components/ProductRow';
 
 export default function HomeScreen() {
 
@@ -63,7 +64,7 @@ export default function HomeScreen() {
   }
 
   // if there is error
-  if (loading) {
+  if (error) {
     return(
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center',  backgroundColor: '#fff'}}>
         <Text>Error in fetching data... Please check your internet connection.</Text>
@@ -72,11 +73,26 @@ export default function HomeScreen() {
   }
 
   return (
-    <SafeAreaView style={{ flex: 1, paddingHorizontal: 20, paddingVertical: 15, backgroundColor: '#fff'}}>
-      <View>
-        <Text style={styles.welcomeUserText}>{'Hi User'}</Text>
+    <SafeAreaView style={{ flex: 1, paddingVertical: 15, paddingHorizontal: 8, backgroundColor: '#fff'}}>
+
+      {/* Appbar */}
+      <View style={styles.appBar}>
+        <MaterialIcons name='location-on' color={'#000'} size={24}/>
+        <Text style={styles.text}>Manila, Philippines</Text>
+        <MaterialIcons name='history' color={'#000'} size={24}/>
       </View>
-      <TextInput 
+
+      {/* Welcome component */}
+      <ScrollView style={{padding: 2}}>
+        <Welcome/>
+        <Carousel/>
+        <Heading/>
+        <ProductRow/>
+      </ScrollView>
+
+      
+      {/* Searchbar */}
+      {/* <TextInput 
         placeholder='Search'
         clearButtonMode='always' //ios lang pala haha
         autoCapitalize='none'
@@ -84,13 +100,12 @@ export default function HomeScreen() {
         value={searchQuery}
         onChangeText={(query) => handleSearch(query)}
         style={styles.searchBar}
-      />
-      <Text style={styles.text}>Home Screen</Text>
-      <FlatList
+      /> */}
+      {/* <FlatList
         data={apiData}
         keyExtractor={(item) => item.title}
         renderItem={({ item }) => (
-          <View>
+          <View style={{ borderColor: '#D9D9D9', borderRadius: 10, borderWidth: 2, marginVertical: 8, padding: 10}}>
             <Image 
               style={styles.productContainer}
               source={{ uri: item.image }} />
@@ -101,7 +116,7 @@ export default function HomeScreen() {
             </View>
           </View>
         )}
-      />
+      /> */}
         
     </SafeAreaView>
     // bottom navigator
@@ -125,7 +140,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: 'bold',
     color: '#000',
-    paddingTop: 5,
+    paddingVertical: 8,
   },
   searchBar: {
     height: 44,
@@ -142,12 +157,14 @@ const styles = StyleSheet.create({
     height: 100,
     borderRadius: 50,
     margin: 10,
+    borderColor: '#D9D9D9',
   },
   productTitle: {
     fontSize: 21,
     marginLeft: 10,
     fontWeight: '700',
     marginBottom: 15,
+    color: '#000'
   },
   productDescription: {
     fontSize: 14,
@@ -160,5 +177,11 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     color: '#000',
     marginBottom: 15,
+    fontWeight: 'bold'
+  },
+  appBar: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
 });

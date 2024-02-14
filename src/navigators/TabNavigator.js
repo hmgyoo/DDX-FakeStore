@@ -46,13 +46,13 @@ const TabNavigator = () => {
           } />
         )
       }}></Tab.Screen>
-      <Tab.Screen name='History' component={OrderHistoryScreen} options={{
+      {/* <Tab.Screen name='History' component={OrderHistoryScreen} options={{
         tabBarIcon: ({ focused, color, size }) => (
           <MaterialIcons name="history" size={30} color={
             focused ? '#284B63' : '#D9D9D9'
           } />
         )
-      }}></Tab.Screen>
+      }}></Tab.Screen> */}
       <Tab.Screen name='Profile' component={UserProfileScreen} options={{
         tabBarIcon: ({ focused, color, size }) => (
           <MaterialIcons name="person-pin" size={30} color={
