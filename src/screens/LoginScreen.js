@@ -12,9 +12,10 @@ import {
   Alert,
   Button,
 } from 'react-native';
-import { useFocusEffect } from '@react-navigation/native';
 import axios from 'axios';
 import { useRoute } from '@react-navigation/native';
+// import Icon from 'react-native-vector-icons/FontAwesome6';
+// import { useFocusEffect } from '@react-navigation/native';
 
 
 export default function LoginScreen({navigation}) {
@@ -110,7 +111,7 @@ export default function LoginScreen({navigation}) {
           console.log('Login Successful:', response.data);
   
           // Redirect to Landing Page or perform other navigation
-          navigation.navigate('Home', {
+          navigation.navigate('Tab', {
             user: {
               email: form.email,
             },
@@ -206,9 +207,9 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 27,
     fontWeight: '700',
-    color: '#0080ff',
+    color: '#353535',
     marginBottom: 6,
-    textAlign: 'center',
+    textAlign: 'left',
   },
   subtitle: {
     fontSize: 15,
@@ -244,7 +245,7 @@ const styles = StyleSheet.create({
   },
   formFooter: {
     fontSize: 17,
-    fontWeight: '600',
+    fontWeight: '300',
     color: '#222',
     textAlign: 'center',
     letterSpacing: 0.15,
