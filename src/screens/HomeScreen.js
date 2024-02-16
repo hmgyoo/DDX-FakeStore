@@ -36,6 +36,8 @@ export default function HomeScreen() {
   const [fullData, setFullData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
 
+  // route from login to save user info
+  // const { user } = route.params || {};
 
   // handle Search
   const handleSearch = (query) => {
@@ -104,7 +106,7 @@ export default function HomeScreen() {
         <HeadingWomens/>
         <ProductRowWomens/>
         <Text style={styles.spacerText}>All Products</Text>
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingBottom: 50}}>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingBottom: 40}}>
           <ProductRowAllProducts/>
         </View>
       </ScrollView>

@@ -14,8 +14,7 @@ import {
 } from 'react-native';
 import axios from 'axios';
 import { useRoute } from '@react-navigation/native';
-// import Icon from 'react-native-vector-icons/FontAwesome6';
-// import { useFocusEffect } from '@react-navigation/native';
+
 
 
 export default function LoginScreen({navigation}) {
@@ -56,7 +55,7 @@ export default function LoginScreen({navigation}) {
     if (!isEmailValid(email)) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        errEmail: 'Enter a valid email address or username',
+        errEmail: 'Enter a valid username',
       }));
     } else {
       setErrors((prevErrors) => ({ ...prevErrors, errEmail: '' }));
