@@ -1,4 +1,4 @@
-import { FlatList, Text, View, StyleSheet, Image } from 'react-native'
+import { FlatList, Text, View, StyleSheet, Image, ActivityIndicator } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import ProductCardViewAllProducts from './ProductCardViewAllProducts';
@@ -6,6 +6,7 @@ import ProductCardViewAllProducts from './ProductCardViewAllProducts';
 const ProductList = ({ searchQuery }) => {
 
   const [apiData, setApiData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   // use Effect
   useEffect(() => {
@@ -15,6 +16,8 @@ const ProductList = ({ searchQuery }) => {
         setApiData(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -32,6 +35,22 @@ const ProductList = ({ searchQuery }) => {
       )
     : [];
 
+  if (loading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size='large' color='#353535' />
+      </View>
+    );
+  }
+
+  if (filteredProducts.length === 0) {
+    return (
+      <View style={styles.noResultsContainer}>
+        <Text>No results found</Text>
+      </View>
+    );
+  }
+
   return (
     <View style={{ marginLeft: 10, marginBottom: 10}}>
       <FlatList
@@ -40,8 +59,6 @@ const ProductList = ({ searchQuery }) => {
         keyExtractor={(item) => item.id.toString()}
         contentContainerStyle={styles.flatListContainer}
         numColumns={2}
-        // horizontal
-
       />
     </View>
   )
@@ -74,7 +91,19 @@ const styles = StyleSheet.create({
   flatListContainer: {
     justifyContent: 'space-between',
     flexDirection: 'column',
-    // flexWrap: 'wrap',
     marginBottom: 10,
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    marginTop: 30,
+  },
+  noResultsContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
   }
 })

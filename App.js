@@ -19,7 +19,7 @@ const App = () => {
         <Stack.Screen name="Sign Up" component={SignupScreen} options={{ title: 'Sign up', animation: "slide_from_left" }}/>
         <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false, title: 'Welcome', animation: "slide_from_left" }}/>
         <Stack.Screen name="Tab" component={TabNavigator} options={{ headerShown: false,title: 'FakeStore', animation: "slide_from_left" }}/>
-        <Stack.Screen name="Product Details" component={ProductDetailsScreen} options={{ headerShown: true,title: 'Product details', animation: "slide_from_left" }}/>
+        <Stack.Screen name="Product Details" component={ProductDetailsScreen} options={{ headerShown: false,title: 'Product details', animation: "slide_from_left" }}/>
         <Stack.Screen name="Search" component={SearchScreen} options={{ headerShown: true,title: 'Search', animation: "slide_from_left" }}/>
       </Stack.Navigator>
     </NavigationContainer>
