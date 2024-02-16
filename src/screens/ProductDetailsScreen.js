@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Image, ScrollView } from 'react-native'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 import React from 'react'
@@ -14,51 +14,62 @@ const ProductDetailsScreen = ({ route }) => {
     <View style={styles.container}>
       <View style={styles.upperRow}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
-            <MaterialIcons name='arrow-circle-left' color='#3C6E71' size={35}/>
+            <IonIcons name='arrow-back-circle' color='#3C6E71' size={40}/>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => {}}>
-            <IonIcons name='heart-circle-outline' color='#3C6E71' size={35}/>
+            <IonIcons name='heart-outline' color='#3C6E71' size={40}/>
           </TouchableOpacity>
       </View>
       <Image
         source={{uri: product.image}}
         style={styles.image}
       />
+      <ScrollView style={styles.details}>
+        <View >
+          <View style={styles.titleRow}>
+            <Text style={styles.title}>{product.title}</Text>
+            <View style={styles.priceWrapper}>
+              <Text style={styles.price}>{`$ ${product.price}`}</Text>
+            </View>
+          </View>
 
-      <View style={styles.details}>
-        <View style={styles.titleRow}>
-          <Text style={styles.title}>{product.title}</Text>
-          <View style={styles.priceWrapper}>
-            <Text style={styles.price}>{`$ ${product.price}`}</Text>
+          <View style={styles.ratingRow}>
+            <View style={styles.rating}>
+              {/* <Text style={styles.rating}>{`★ ${product.rating.rate}`}</Text> */}
+              <IonIcons 
+                name='star'
+                size={24}
+                color={'#fff'}
+              />
+              <Text style={styles.ratingText}>{`  (${product.rating.rate})`}</Text>
+            </View>
+            <View style={styles.rating}>
+              {/* <Text style={styles.rating}>{`★ ${product.rating.rate}`}</Text> */}
+              <MaterialIcons 
+                name='numbers'
+                size={24}
+                color={'#fff'}
+              />
+              <Text style={styles.ratingText}>{`  (${product.rating.count})`}</Text>
+            </View>
+          </View>
+
+          <View style={styles.descriptionWrapper}>
+            <Text style={styles.description}>Description</Text>
+            <Text style={styles.descText}>{product.description}</Text>
+          </View>
+
+          <View style={styles.cartRow}>
+            <TouchableOpacity onPress={() => {}} style={styles.cartBtn}>
+              <Text style={styles.cartTitle}>BUY NOW! </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => {}} style={styles.addCart}>
+              <MaterialIcons name='shopping-bag' size={22} color={'#fff'}/>
+            </TouchableOpacity>
           </View>
         </View>
-
-        <View style={styles.ratingRow}>
-          <View style={styles.rating}>
-            {/* <Text style={styles.rating}>{`★ ${product.rating.rate}`}</Text> */}
-            <IonIcons 
-              name='star'
-              size={24}
-              color={'#fff'}
-            />
-            <Text style={styles.ratingText}>{`  (${product.rating.rate})`}</Text>
-          </View>
-          <View style={styles.rating}>
-            {/* <Text style={styles.rating}>{`★ ${product.rating.rate}`}</Text> */}
-            <MaterialIcons 
-              name='numbers'
-              size={24}
-              color={'#fff'}
-            />
-            <Text style={styles.ratingText}>{`  (${product.rating.count})`}</Text>
-          </View>
-        </View>
-
-        <View style={styles.descriptionWrapper}>
-          <Text style={styles.description}>Description</Text>
-          <Text style={styles.descText}>{product.description}</Text>
-        </View>
-      </View>
+      </ScrollView>
     </View>
   )
 }
@@ -159,5 +170,37 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     color: '#fff',
     marginTop: 10,
+  },
+  cartRow: {
+    paddingBottom: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
+    paddingHorizontal: 20,
+  },
+  cartBtn: {
+    width: '70%',
+    backgroundColor: '#353535',
+    padding: 4,
+    borderRadius: 15,
+    // marginLeft: 20,
+    
+  },
+  cartTitle: {
+    paddingLeft: 15,
+    color: '#fff',
+    fontWeight: '600',
+    fontSize: 15,
+  },
+  addCart: {
+    width: 37,
+    height: 37,
+    borderRadius: 50,
+    margin: 8,
+    backgroundColor: '#353535',
+    alignItems: 'center',
+    justifyContent: 'center'
   }
+
 })
