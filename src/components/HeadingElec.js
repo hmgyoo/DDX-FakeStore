@@ -2,11 +2,11 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import React from 'react';
 
-const Heading = () => {
+const HeadingElec = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Best Sellers</Text>
+        <Text style={styles.headerTitle}>Electronics</Text>
         <TouchableOpacity>
           <MaterialIcons name='grid-view' size={24} color={'#3C6E71'}/>
         </TouchableOpacity>
@@ -15,7 +15,7 @@ const Heading = () => {
   )
 }
 
-export default Heading
+export default HeadingElec
 
 const styles = StyleSheet.create({
   container: {
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   headerTitle: {
-    fontSize: 28,
+    fontSize: 21,
     color: '#000',
     fontWeight: '900',
   }

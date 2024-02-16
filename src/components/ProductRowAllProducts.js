@@ -2,8 +2,9 @@ import { FlatList, Text, View, StyleSheet, Image } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import ProductCardView from './ProductCardView';
+import ProductCardViewAllProducts from './ProductCardViewAllProducts';
 
-const ProductRow = () => {
+const ProductRowAllProducts = () => {
 
   const [apiData, setApiData] = useState([]);
 
@@ -11,12 +12,9 @@ const ProductRow = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get('https://fakestoreapi.com/products');
+        // const topRatedProducts = sortedProducts.slice(0, 5);
 
-        const sortedProducts = response.data.sort((a, b) => b.rating.rate - a.rating.rate);
-
-        const topRatedProducts = sortedProducts.slice(0, 7);
-
-        setApiData(topRatedProducts);
+        setApiData(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -29,23 +27,25 @@ const ProductRow = () => {
     <View style={{ marginLeft: 10, marginBottom: 10}}>
       <FlatList
         data={apiData}
-        renderItem={({ item }) => <ProductCardView product={item}/>}
+        renderItem={({ item }) => <ProductCardViewAllProducts product={item}/>}
         keyExtractor={(item) => item.id.toString()}
-        contentContainerStyle={{columnGap: 12}}
-        // numColumns={2}
-        horizontal
+        contentContainerStyle={styles.flatListContainer}
+        numColumns={2}
+        // horizontal
+
       />
     </View>
   )
 }
 
-export default ProductRow
+export default ProductRowAllProducts
 
 const styles = StyleSheet.create({
   itemContainer: {
-    flexDirection: 'column',
+    flexDirection: 'center',
     alignItems: 'center',
     margin: 10,
+    marginBottom: 10,
   },
   productImage: {
     width: 100,
@@ -62,4 +62,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: 'gray',
   },
+  flatListContainer: {
+    justifyContent: 'space-between',
+    flexDirection: 'column',
+    // flexWrap: 'wrap',
+    marginBottom: 10,
+  }
 })

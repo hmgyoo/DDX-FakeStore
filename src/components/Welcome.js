@@ -1,13 +1,17 @@
 import { StyleSheet, Text, TouchableOpacity, View, SafeAreaView, TextInput } from 'react-native'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import React from 'react'
+import { useNavigation } from '@react-navigation/native';
 
 const Welcome = () => {
+
+  const navigation = useNavigation();
+
   return (
     <View>
       <View style={styles.container}>
         <Text style={styles.welcomeText}>FakeStore API</Text>
-        <Text style={styles.subText}>Find your item in this fake store!</Text>
+        {/* <Text style={styles.subText}>Find your item in this fake store!</Text> */}
       </View>
       <View style={styles.searchContainer}>
         <TouchableOpacity>
@@ -17,7 +21,7 @@ const Welcome = () => {
             <TextInput
               style={styles.searchInput}
               value=''
-              onPressIn={() => {}}
+              onPressIn={() => navigation.navigate('Search')}
               placeholder='What are you looking for?'
             />
           </View>
@@ -35,8 +39,9 @@ const styles = StyleSheet.create({
   welcomeText: {
     fontWeight: 'bold',
     fontSize: 45,
-    color: '#000',
+    color: '#3C6E71',
     paddingHorizontal: 5,
+    alignSelf: 'center',
   },
   subText: {
     fontWeight: 'bold',

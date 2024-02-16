@@ -17,6 +17,15 @@ import Welcome from '../components/Welcome';
 import Carousel from '../components/Carousel';
 import Heading from '../components/Heading';
 import ProductRow from '../components/ProductRow';
+import HeadingMens from '../components/HeadingMens';
+import ProductRowMens from '../components/ProductRowMens';
+import HeadingElec from '../components/HeadingElec';
+import ProductRowElec from '../components/ProductRowElec';
+import HeadingJewelry from '../components/HeadingJewelry';
+import ProductRowJewelry from '../components/ProductRowJewelry';
+import HeadingWomens from '../components/HeadingWomens';
+import ProductRowWomens from '../components/ProductRowWomens';
+import ProductRowAllProducts from '../components/ProductRowAllProducts';
 
 export default function HomeScreen() {
 
@@ -88,35 +97,17 @@ export default function HomeScreen() {
         <Carousel/>
         <Heading/>
         <ProductRow/>
-
+        <HeadingElec/>
+        <ProductRowElec/>
+        <HeadingMens/>
+        <ProductRowMens/>
+        <HeadingJewelry/>
+        <ProductRowJewelry/>
+        <HeadingWomens/>
+        <ProductRowWomens/>
+        <Text style={styles.spacerText}>All Products</Text>
+        <ProductRowAllProducts/>
       </ScrollView>
-      
-      {/* Searchbar */}
-      {/* <TextInput 
-        placeholder='Search'
-        clearButtonMode='always' //ios lang pala haha
-        autoCapitalize='none'
-        autoCorrect={false}
-        value={searchQuery}
-        onChangeText={(query) => handleSearch(query)}
-        style={styles.searchBar}
-      /> */}
-      {/* <FlatList
-        data={apiData}
-        keyExtractor={(item) => item.title}
-        renderItem={({ item }) => (
-          <View style={{ borderColor: '#D9D9D9', borderRadius: 10, borderWidth: 2, marginVertical: 8, padding: 10}}>
-            <Image 
-              style={styles.productContainer}
-              source={{ uri: item.image }} />
-            <View>
-              <Text style={styles.productTitle}>{item.title}</Text>
-              <Text style={styles.productDescription}>{item.description}</Text>
-              <Text style={styles.productPrice}>{`₱${item.price}`}</Text>
-            </View>
-          </View>
-        )}
-      /> */}
         
     </SafeAreaView>
     // bottom navigator
@@ -183,5 +174,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  spacerText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    flex: 1,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    color: '#000',
   },
 });

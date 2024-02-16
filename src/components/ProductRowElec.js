@@ -3,18 +3,16 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import ProductCardView from './ProductCardView';
 
-const ProductRow = () => {
+const ProductRowElec = () => {
 
   const [apiData, setApiData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://fakestoreapi.com/products');
+        const response = await axios.get('https://fakestoreapi.com/products/category/electronics');
 
-        const sortedProducts = response.data.sort((a, b) => b.rating.rate - a.rating.rate);
-
-        const topRatedProducts = sortedProducts.slice(0, 7);
+        const topRatedProducts = response.data.slice(0, 5);
 
         setApiData(topRatedProducts);
       } catch (error) {
@@ -24,6 +22,15 @@ const ProductRow = () => {
 
     fetchData();
   }, []);
+
+  // const renderItem = ({ item }) => (
+  //   <View style={styles.itemContainer}>
+  //     <Image style={styles.productImage} source={{ uri: item.image }} />
+  //     <Text style={styles.productTitle}>{item.title}</Text>
+  //     <Text style={styles.productPrice}>{`$${item.price}`}</Text>
+  //     {/* Add additional information as needed */}
+  //   </View>
+  // );
 
   return (
     <View style={{ marginLeft: 10, marginBottom: 10}}>
@@ -39,7 +46,7 @@ const ProductRow = () => {
   )
 }
 
-export default ProductRow
+export default ProductRowElec
 
 const styles = StyleSheet.create({
   itemContainer: {
