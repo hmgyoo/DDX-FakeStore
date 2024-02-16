@@ -1,20 +1,17 @@
 import { FlatList, Text, View, StyleSheet, Image } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import ProductCardView from './ProductCardView';
 import ProductCardViewAllProducts from './ProductCardViewAllProducts';
-import ProductList from './ProductList';
 
-const ProductRowAllProducts = () => {
+const ProductList = ({ searchQuery }) => {
 
   const [apiData, setApiData] = useState([]);
 
+  // use Effect
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get('https://fakestoreapi.com/products');
-        // const topRatedProducts = sortedProducts.slice(0, 5);
-
         setApiData(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -24,10 +21,21 @@ const ProductRowAllProducts = () => {
     fetchData();
   }, []);
 
+  // Ensure searchQuery is always a string before filtering
+  const normalizedSearchQuery = typeof searchQuery === 'string' ? searchQuery : '';
+  
+  // Check if apiData is an array and not empty before filtering
+  const filteredProducts = Array.isArray(apiData) && apiData.length > 0
+    ? apiData.filter(product =>
+        typeof product.title === 'string' &&
+        product.title.toLowerCase().includes(normalizedSearchQuery.toLowerCase())
+      )
+    : [];
+
   return (
     <View style={{ marginLeft: 10, marginBottom: 10}}>
       <FlatList
-        data={apiData}
+        data={filteredProducts}
         renderItem={({ item }) => <ProductCardViewAllProducts product={item}/>}
         keyExtractor={(item) => item.id.toString()}
         contentContainerStyle={styles.flatListContainer}
@@ -39,7 +47,7 @@ const ProductRowAllProducts = () => {
   )
 }
 
-export default ProductRowAllProducts
+export default ProductList
 
 const styles = StyleSheet.create({
   itemContainer: {

@@ -146,7 +146,7 @@ export default function LoginScreen({navigation}) {
                   autoCapitalize="none"
                   autoCorrect={false}
                   // keyboardType="email-address"
-                  placeholder="binimaloi or binimaloi@gmail.com"
+                  placeholder="ex. binimaloi"
                   placeholderTextColor="#6b7280"
                   style={styles.inputControl}
                   onChangeText={handleEmailChange}

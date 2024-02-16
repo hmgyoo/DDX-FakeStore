@@ -14,7 +14,6 @@ const ProductRowJewelry = () => {
 
         const sortedProducts = response.data.slice(0, 5);
 
-        // const topRatedProducts = sortedProducts.slice(0, 5);
 
         setApiData(sortedProducts);
       } catch (error) {
@@ -24,15 +23,6 @@ const ProductRowJewelry = () => {
 
     fetchData();
   }, []);
-
-  // const renderItem = ({ item }) => (
-  //   <View style={styles.itemContainer}>
-  //     <Image style={styles.productImage} source={{ uri: item.image }} />
-  //     <Text style={styles.productTitle}>{item.title}</Text>
-  //     <Text style={styles.productPrice}>{`$${item.price}`}</Text>
-  //     {/* Add additional information as needed */}
-  //   </View>
-  // );
 
   return (
     <View style={{ marginLeft: 10, marginBottom: 10}}>
