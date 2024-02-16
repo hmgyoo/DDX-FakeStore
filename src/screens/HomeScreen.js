@@ -27,7 +27,9 @@ import HeadingWomens from '../components/HeadingWomens';
 import ProductRowWomens from '../components/ProductRowWomens';
 import ProductRowAllProducts from '../components/ProductRowAllProducts';
 
-export default function HomeScreen() {
+export default function HomeScreen({ route }) {
+
+  const { user } = route.params || {};
 
   // use states
   const [apiData, setApiData] = useState([]);
@@ -87,7 +89,8 @@ export default function HomeScreen() {
       {/* Appbar */}
       <View style={styles.appBar}>
         <MaterialIcons name='location-on' color={'#000'} size={24}/>
-        <Text style={styles.text}>Manila, Philippines</Text>
+        <Text style={styles.text}>{`Hello, ${user.username}`}</Text>
+        {/* <Text style={styles.text}>Manila, Philippines</Text> */}
         <MaterialIcons name='history' color={'#000'} size={24}/>
       </View>
 

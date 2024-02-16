@@ -109,12 +109,49 @@ export default function LoginScreen({navigation}) {
           // Successful login, you can now save the token or perform other actions
           console.log('Login Successful:', response.data);
   
-          // Redirect to Landing Page or perform other navigation
+          // You can also navigate to other screens within the 'Tab' navigator and pass parameters
           navigation.navigate('Tab', {
-            user: {
-              username: form.email,
+            screen: 'Favorites',
+            params: {
+              user: {
+                username: form.email,
+              },
+              // Add additional parameters specific to the 'Favorites' screen if needed
             },
           });
+
+          navigation.navigate('Tab', {
+            screen: 'Cart',
+            params: {
+              user: {
+                username: form.email,
+              },
+              // Add additional parameters specific to the 'Cart' screen if needed
+            },
+          });
+
+          navigation.navigate('Tab', {
+            screen: 'Profile',
+            params: {
+              user: {
+                username: form.email,
+              },
+              // Add additional parameters specific to the 'Profile' screen if needed
+            },
+          });
+
+          // Redirect to Landing Page or perform other navigation
+          navigation.navigate('Tab', {
+            screen: 'Home',
+            params: {
+              user: {
+                username: form.email,
+              },
+            }
+          });
+
+          
+
         } else {
           // Check for specific error messages from the API
           if (response.data.error) {
