@@ -7,6 +7,7 @@ import LoginScreen from './src/screens/LoginScreen';
 import SignupScreen from './src/screens/SignupScreen';
 import ProductDetailsScreen from './src/screens/ProductDetailsScreen';
 import SearchScreen from './src/screens/SearchScreen';
+import CartScreen from './src/screens/CartScreen';
 
 // create stack object
 const Stack = createNativeStackNavigator();
@@ -21,6 +22,7 @@ const App = () => {
         <Stack.Screen name="Tab" component={TabNavigator} options={{ headerShown: false,title: 'FakeStore', animation: "slide_from_left" }}/>
         <Stack.Screen name="Product Details" component={ProductDetailsScreen} options={{ headerShown: false,title: 'Product details', animation: "slide_from_left" }}/>
         <Stack.Screen name="Search" component={SearchScreen} options={{ headerShown: true,title: 'Search', animation: "slide_from_left" }}/>
+        <Stack.Screen name="Cart" component={CartScreen} options={{ headerShown: true,title: 'Shopping Cart', animation: "slide_from_left" }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

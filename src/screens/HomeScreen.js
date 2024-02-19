@@ -10,6 +10,7 @@ import {
   ActivityIndicator,
   FlatList,
   Image,
+  TouchableOpacity,
 } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -26,8 +27,9 @@ import ProductRowJewelry from '../components/ProductRowJewelry';
 import HeadingWomens from '../components/HeadingWomens';
 import ProductRowWomens from '../components/ProductRowWomens';
 import ProductRowAllProducts from '../components/ProductRowAllProducts';
+import { CommonActions } from '@react-navigation/native';
 
-export default function HomeScreen({ route }) {
+export default function HomeScreen({ route, navigation }) {
 
   const { user } = route.params || {};
 
@@ -45,6 +47,18 @@ export default function HomeScreen({ route }) {
   const handleSearch = (query) => {
     setSearchQuery(query);
   }
+
+  // Logout function to reset parameters and navigate to login screen
+  const handleLogout = () => {
+    // Reset state values and navigate to the 'Login' screen
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [{ name: 'Login' }],
+      })
+    );
+  };
+  
 
 
   useEffect(() => {
@@ -91,7 +105,9 @@ export default function HomeScreen({ route }) {
         <MaterialIcons name='location-on' color={'#000'} size={24}/>
         <Text style={styles.text}>{`Hello, ${user.username}`}</Text>
         {/* <Text style={styles.text}>Manila, Philippines</Text> */}
-        <MaterialIcons name='history' color={'#000'} size={24}/>
+        <TouchableOpacity onPress={handleLogout}>
+          <MaterialIcons name='logout' color={'#000'} size={24}/>
+        </TouchableOpacity>
       </View>
 
       {/* Welcome component */}

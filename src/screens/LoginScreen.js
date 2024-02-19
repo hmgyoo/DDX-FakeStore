@@ -13,7 +13,7 @@ import {
   Button,
 } from 'react-native';
 import axios from 'axios';
-import { useRoute } from '@react-navigation/native';
+import { useRoute, useFocusEffect } from '@react-navigation/native';
 
 
 
@@ -45,7 +45,7 @@ export default function LoginScreen({navigation}) {
   };
 
   const isPasswordValid = (password) => {
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{5,}$/;
+    const passwordRegex = /^[a-zA-Z0-9!@#$%^&*()_+-=<>?.,;:'"[\]{}|\\/]+$/;
     return passwordRegex.test(password);
   };
 
@@ -69,7 +69,7 @@ export default function LoginScreen({navigation}) {
       setErrors((prevErrors) => ({
         ...prevErrors,
         errPassword:
-        'Invalid password. Make sure it includes at least one uppercase letter, one lowercase letter, one digit, and one special character ($@$!%*?&), and is at least 5 characters long.',
+        "Invalid password. Please use only alphanumeric characters and the following special characters: !@#$%^&*()_+-=<>?.,;:'\"[]{}|\/.",
       }));
     } else {
       setErrors((prevErrors) => ({ ...prevErrors, errPassword: '' }));
@@ -83,6 +83,20 @@ export default function LoginScreen({navigation}) {
   const handleSignIn = () => {
     navigation.navigate('Sign Up');
   };
+
+  // Reset state values when the screen comes into focus
+  useFocusEffect(
+    React.useCallback(() => {
+      setForm({
+        email: '',
+        password: '',
+      });
+      setErrors({
+        errEmail: '',
+        errPassword: '',
+      });
+    }, [])
+  );
 
   // login function
   const handleLogin = async () => {
@@ -150,7 +164,6 @@ export default function LoginScreen({navigation}) {
             }
           });
 
-          
 
         } else {
           // Check for specific error messages from the API
